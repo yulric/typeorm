@@ -79,7 +79,8 @@
     "yargs": "^6.6.0"
   },
   "scripts": {
-    "test": "node_modules/.bin/gulp tests"
+    "test": "node_modules/.bin/gulp tests",
+    "compile:watch": "tsc -w"
   },
   "bin": {
     "typeorm": "./cli.js"

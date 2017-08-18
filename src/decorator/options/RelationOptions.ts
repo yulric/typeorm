@@ -50,4 +50,5 @@ export interface RelationOptions {
      */
     readonly lazy?: boolean;
 
+    readonly deReferenceRelation?: boolean
 }
