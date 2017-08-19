@@ -126,7 +126,7 @@ export class RelationMetadata {
      */
     readonly isNullable: boolean = true;
 
-    readonly deReferenceRelation: boolean = false;
+    readonly deReferenceRelation: boolean = true;
 
     /**
      * What to do with a relation on deletion of the row containing a foreign key.
@@ -173,7 +173,7 @@ export class RelationMetadata {
             this.isCascadeUpdate = true;
         if (args.options.cascadeRemove || args.options.cascadeAll)
             this.isCascadeRemove = true;
-        if (args.options.deReferenceRelation) {
+        if (args.options.deReferenceRelation !== undefined) {
             this.deReferenceRelation = args.options.deReferenceRelation;
         }
         if (args.options.nullable !== undefined)

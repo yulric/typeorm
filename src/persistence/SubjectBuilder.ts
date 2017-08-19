@@ -662,13 +662,8 @@ export class SubjectBuilder<Entity extends ObjectLiteral> {
                             // if cascade remove option is not set then it means we simply need to remove
                             // reference to this entity from inverse side (from loaded database entity)
                             // this applies only on one-to-many relationship
-                        } else if (relation.isOneToMany && relation.inverseRelation && relation.deReferenceRelation) {
-                            relatedEntitySubject.relationUpdates.push({
-                                relation: relation.inverseRelation,
-                                value: null
-                            }); // todo: implement same for one-to-one
                         }
-                        else if (relation.isOneToMany && relation.inverseRelation && !relation.deReferenceRelation) {
+                        else if (relation.isOneToMany && relation.inverseRelation && relation.deReferenceRelation === false) {
                             relatedEntitySubject.relationUpdates.push({
                                 relation: relation.inverseRelation,
                                 value: {
@@ -676,6 +671,12 @@ export class SubjectBuilder<Entity extends ObjectLiteral> {
                                     .getInverseEntityRelationId(databaseEntity)
                                 }
                             })
+                        } 
+                        else if (relation.isOneToMany && relation.inverseRelation) {
+                            relatedEntitySubject.relationUpdates.push({
+                                relation: relation.inverseRelation,
+                                value: null
+                            }); // todo: implement same for one-to-one
                         }
                     }
                 });
